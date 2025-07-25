@@ -1,0 +1,33 @@
+{
+"type": "FeatureCollection",
+"name": "Data UMKM",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Y": -7.434409551, "X": 109.9139986, "Nama": "Mushola Al Iman", "Keterangan": "Tempat Ibadah", "Image": "mushola_al_iman.png" }, "geometry": { "type": "Point", "coordinates": [ 109.9139986, -7.434409551 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433945353, "X": 109.9140812, "Nama": "BMinor Musik", "Keterangan": "Jasa & Lainnya", "Image": "bminor_musik.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9140812, -7.433945353 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433755902, "X": 109.9143333, "Nama": "Omah Daging Sapi & Grosir Slice", "Keterangan": "Toko & Warung", "Image": "omah_daging.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9143333, -7.433755902 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433605023, "X": 109.9144599, "Nama": "Tembem Productions Topeng Wonosobo", "Keterangan": "Jasa & Lainnya", "Image": "tembem_productions.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9144599, -7.433605023 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433804498, "X": 109.914647, "Nama": "Warung Klontong \"Pak Toro\"", "Keterangan": "Toko & Warung", "Image": "warung_pak_toro.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.914647, -7.433804498 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433165751, "X": 109.9141588, "Nama": "Kios Palawija Bu Atun", "Keterangan": "Toko & Warung", "Image": "kios_bu_atun.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9141588, -7.433165751 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433067106, "X": 109.9146381, "Nama": "Masjid Idnuh Annasir", "Keterangan": "Tempat Ibadah", "Image": "masjid_annasir.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9146381, -7.433067106 ] } },
+{ "type": "Feature", "properties": { "Y": -7.432112715, "X": 109.9152072, "Nama": "Mushola AL-QALAM", "Keterangan": "Tempat Ibadah", "Image": "mushola_al_qalam.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9152072, -7.432112715 ] } },
+{ "type": "Feature", "properties": { "Y": -7.434469242, "X": 109.9162881, "Nama": "Aflah Sentosa (Percetakan & Reparasi Elektronik)", "Keterangan": "Jasa & Lainnya", "Image": "aflah_sentosa.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9162881, -7.434469242 ] } },
+{ "type": "Feature", "properties": { "Y": -7.434421368, "X": 109.9163263, "Nama": "Warung Penvin", "Keterangan": "Toko & Warung", "Image": "warung_penvin.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9163263, -7.434421368 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433975977, "X": 109.9164478, "Nama": "PAUD Tulip", "Keterangan": "Pendidikan", "Image": "paud_tulip.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9164478, -7.433975977 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433705494, "X": 109.916479, "Nama": "Gor Mangunrejo", "Keterangan": "Fasilitas Umum", "Image": "gor_mangunrejo.png" }, "geometry": { "type": "Point", "coordinates": [ 109.916479, -7.433705494 ] } },
+{ "type": "Feature", "properties": { "Y": -7.43453745, "X": 109.9166457, "Nama": "Gereja Emannuel Desa Mangunrejo", "Keterangan": "Tempat Ibadah", "Image": "gereja_emannuel.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9166457, -7.43453745 ] } },
+{ "type": "Feature", "properties": { "Y": -7.434111505, "X": 109.9158244, "Nama": "SDN 1 Mangunrejo", "Keterangan": "Pendidikan", "Image": "sdn_1_mangunrejo.png" }, "geometry": { "type": "Point", "coordinates": [ 109.9158244, -7.434111505 ] } },
+{ "type": "Feature", "properties": { "Y": -7.432804525, "X": 109.9154877, "Nama": "Nafi motor", "Keterangan": "Jasa & Lainnya", "Image": "nafi_motor.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9154877, -7.432804525 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433718985, "X": 109.9148422, "Nama": "Dea Market", "Keterangan": "Toko & Warung", "Image": "dea_market.png" }, "geometry": { "type": "Point", "coordinates": [ 109.9148422, -7.433718985 ] } },
+{ "type": "Feature", "properties": { "Y": -7.434016962, "X": 109.916137, "Nama": "Toko SRC", "Keterangan": "Toko & Warung", "Image": "toko_src.png" }, "geometry": { "type": "Point", "coordinates": [ 109.916137, -7.434016962 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433583636, "X": 109.9157175, "Nama": "Toko 57", "Keterangan": "Toko & Warung", "Image": "toko_57.png" }, "geometry": { "type": "Point", "coordinates": [ 109.9157175, -7.433583636 ] } },
+{ "type": "Feature", "properties": { "Y": -7.43371267, "X": 109.9170279, "Nama": "Lapangan Mangunrejo", "Keterangan": "Fasilitas Umum", "Image": "lapangan_mangunrejo.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9170279, -7.43371267 ] } },
+{ "type": "Feature", "properties": { "Y": -7.432388201, "X": 109.9147981, "Nama": "Toko SRC Lancar Bersama", "Keterangan": "Toko & Warung", "Image": "toko_src_lancar.png" }, "geometry": { "type": "Point", "coordinates": [ 109.9147981, -7.432388201 ] } },
+{ "type": "Feature", "properties": { "Y": -7.432975116, "X": 109.9150156, "Nama": "Warung Kelontong Bu Mainah", "Keterangan": "Toko & Warung", "Image": "warung_bu_mainah.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9150156, -7.432975116 ] } },
+{ "type": "Feature", "properties": { "Y": -7.433396903, "X": 109.9163232, "Nama": "Waroeng Mbok Bawon", "Keterangan": "Toko & Warung", "Image": "mbok_bawon.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9163232, -7.433396903 ] } },
+{ "type": "Feature", "properties": { "Y": -7.4339448, "X": 109.9161945, "Nama": "Combro", "Keterangan": "Toko & Warung", "Image": "combro.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9161945, -7.4339448 ] } },
+{ "type": "Feature", "properties": { "Y": -7.4327968, "X": 109.9146781, "Nama": "Bubur Sumsum", "Keterangan": "Toko & Warung", "Image": "bubur_sumsum.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9146781, -7.4327968 ] } },
+{ "type": "Feature", "properties": { "Y": -7.432825, "X": 109.914567, "Nama": "Kadus Karangmalang", "Keterangan": "Pemerintahan", "Image": "kantor_kadus.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.914567, -7.432825 ] } },
+{ "type": "Feature", "properties": { "Y": -7.434063889, "X": 109.9168732, "Nama": "Kades Mangunrejo", "Keterangan": "Pemerintahan", "Image": "kantor_kades.jpg" }, "geometry": { "type": "Point", "coordinates": [ 109.9168732, -7.434063889 ] } }
+]
+}
