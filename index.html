@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebGIS Dusun Karangmalang</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="landing-page">
+    <div class="hero-container">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Dusun Karangmalang</h1>
+            <p class="hero-subtitle">
+                Temukan lokasi, cari rute tercepat, dan dapatkan informasi detail mengenai Lokasi UMKM, dan fasilitas lain di wilayah Dusun kami.
+            </p>
+            <div class="cta-buttons-group">
+                <a href="#" id="enter-app-btn" class="cta-button">Masuk ke Peta Interaktif</a>
+                <a href="https://arcg.is/Pq5Oz" target="_blank" rel="noopener noreferrer" class="cta-button">Masuk ke StoryMap</a>
+            </div>
+        </div>
+    </div>
+    <main class="features-section">
+        <div class="container">
+            <h2>Fitur Utama Aplikasi</h2>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon">🗺️</div><h3>Visualisasi Peta</h3><p>Lihat persebaran semua potensi desa dalam antarmuka peta yang mudah digunakan.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔍</div><h3>Pencarian Cepat</h3><p>Cari lokasi spesifik berdasarkan nama dengan cepat dan akurat.</p></div>
+                <div class="feature-card"><div class="feature-icon">🚗</div><h3>Rute & Radius</h3><p>Temukan lokasi dalam radius tertentu dan lihat berbagai alternatif rute perjalanan.</p></div>
+                <div class="feature-card"><div class="feature-icon">📊</div><h3>Filter & Statistik</h3><p>Saring data berdasarkan kategori dan lihat statistik interaktif dalam bentuk grafik.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>© 2025 WebGIS Potensi Desa. Dibuat dengan Leaflet & OpenStreetMap.</p>
+    </footer>
+  </div>
+
+  <div id="app-container" class="app-container">
+    <header id="app-header" class="app-header">
+      <img src="https://data.jatengprov.go.id/uploads/group/2017-11-14-040103.953027index.jpg" alt="Logo Desa" class="header-logo"/>
+      <h1>Peta Dusun Karangmalang</h1>
+    </header>
+    <div id="main-container" class="main-container">
+      <div id="map-toolbar" class="map-toolbar">
+        <button class="toolbar-btn" data-panel-id="panel-search" title="Pencarian Lokasi"><i class="fas fa-search"></i></button>
+        <button class="toolbar-btn" data-panel-id="panel-tools" title="Alat & Analisis"><i class="fas fa-tools"></i></button>
+        <button class="toolbar-btn" data-panel-id="panel-layers" title="Filter & Statistik"><i class="fas fa-chart-bar"></i></button>
+        <button id="print-map-btn" class="toolbar-btn" title="Cetak Peta"><i class="fas fa-print"></i></button>
+        <button class="toolbar-btn" data-panel-id="panel-report" title="Lapor & Ulas"><i class="fas fa-exclamation-triangle"></i></button>
+      </div>
+      <div id="panel-container" class="panel-container">
+        <div id="panel-search" class="tool-panel">
+          <button class="close-panel-btn">×</button>
+          <h3>Pencarian Lokasi & Alamat</h3>
+          <div class="panel-content">
+            <div class="dashboard-card">
+                <h4>Cari Lokasi (Nama)</h4>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Ketik nama UMKM, wisata, dll...">
+                    <div id="search-results"></div>
+                </div>
+            </div>
+            <div class="dashboard-card" style="margin-top: 20px;">
+                <h4>Cari Alamat</h4>
+                <input type="text" id="address-search-input" placeholder="Ketik alamat atau nama jalan...">
+                <button id="geocode-address-btn" class="sidebar-button" style="margin-top: 10px;">Cari Alamat</button>
+                <div id="geocode-results"></div>
+            </div>
+          </div>
+        </div>
+        <div id="panel-tools" class="tool-panel">
+          <button class="close-panel-btn">×</button>
+          <h3>Alat & Analisis</h3>
+          <div class="panel-content">
+            <div class="dashboard-card">
+              <h4>Pencarian Radius</h4>
+              <label for="radius-slider">Radius Pencarian (km):</label>
+              <div class="slider-wrapper">
+                <input type="range" id="radius-slider" min="1" max="15" value="3" step="1">
+                <span id="radius-value">3 km</span>
+              </div>
+              <button id="find-by-mylocation-btn" class="sidebar-button">Dari Lokasi Saya</button>
+              <button id="find-by-map-click-btn" class="sidebar-button">Pilih Titik di Peta</button>
+            </div>
+            <div class="dashboard-card">
+                <h4>Mode Rute</h4>
+                <button id="custom-route-btn" class="sidebar-button">Buat Rute Kustom (A → B)</button>
+            </div>
+          </div>
+        </div>
+        <div id="panel-layers" class="tool-panel">
+            <button class="close-panel-btn">×</button>
+            <h3>Filter & Statistik</h3>
+            <div class="panel-content">
+                <div class="dashboard-card">
+                    <h4>Filter Data</h4>
+                    <div class="custom-select-wrapper"><select id="kategori-filter"><option value="Semua">Tampilkan Semua</option></select></div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h4>Pengaturan Layer Batas Wilayah</h4>
+                    <div class="layer-control-group"><label for="area-color-picker">Warna Garis Batas:</label><input type="color" id="area-color-picker" value="#E67E22"></div>
+                    <div class="layer-control-group"><label for="area-fill-color-picker">Warna Area (Polygon):</label><input type="color" id="area-fill-color-picker" value="#E67E22"></div>
+                    <div class="layer-control-group"><label for="area-opacity-slider">Opasitas Layer:</label><div class="slider-wrapper"><input type="range" id="area-opacity-slider" min="0" max="1" step="0.1" value="0.9"><span id="area-opacity-value">0.9</span></div></div>
+                </div>
+                <div class="dashboard-card">
+                    <h4>Statistik Cepat</h4>
+                    <div id="stats-content"><p><strong>Total Lokasi:</strong> <span id="rs-count">0</span></p><p><strong>Kategori Terbanyak:</strong> <span id="kategori-terbanyak">-</span></p><p><strong>Kategori Tersedikit:</strong> <span id="kategori-tersedikit">-</span></p></div>
+                </div>  
+                <div class="dashboard-card"><h4>Grafik Kategori</h4><div id="chart-wrapper" class="chart-wrapper"><canvas id="category-chart"></canvas></div></div>
+                <div class="dashboard-card"><h4>Unduh Data</h4><div class="download-buttons-group"><button id="download-json-btn" class="sidebar-button download-option"><i class="fas fa-file-code"></i> JSON</button><button id="download-csv-btn" class="sidebar-button download-option"><i class="fas fa-file-csv"></i> Excel (CSV)</button><button id="download-pdf-btn" class="sidebar-button download-option"><i class="fas fa-file-pdf"></i> PDF</button></div></div>
+            </div>
+        </div>
+        <div id="panel-report" class="tool-panel">
+          <button class="close-panel-btn">×</button>
+          <h3>Laporkan Kesalahan / Beri Ulasan</h3>
+          <div class="panel-content">
+            <div class="report-form-card">
+                <h4>Form Laporan & Ulasan</h4>
+                <div class="form-group"><label for="report-location-name"><i class="fas fa-map-marker-alt"></i> Lokasi yang Dilaporkan:</label><input type="text" id="report-location-name" readonly placeholder="Pilih lokasi di peta..."><input type="hidden" id="report-location-id"></div>
+                <div class="form-group"><label for="report-type"><i class="fas fa-tag"></i> Jenis Laporan:</label><select id="report-type"><option value="">Pilih Jenis Laporan</option><option value="Informasi Salah">Informasi Salah</option><option value="Lokasi Tidak Akurat">Lokasi Tidak Akurat</option><option value="Lokasi Tutup">Lokasi Tutup</option><option value="Ulasan Umum">Ulasan Umum</option><option value="Lainnya">Lainnya</option></select></div>
+                <div class="form-group"><label for="report-description"><i class="fas fa-comment-alt"></i> Deskripsi / Ulasan Anda:</label><textarea id="report-description" rows="5" placeholder="Jelaskan detail laporan atau berikan ulasan Anda..."></textarea></div>
+                <button id="submit-report-btn" class="submit-report-btn"><i class="fas fa-paper-plane"></i> Kirim Laporan / Ulasan</button>
+                <div id="report-status-message" class="report-status-message"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="map-container" class="map-container"><div id="status-panel" class="status-panel"></div><div id="map" class="map"></div></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/georaster"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.js"></script>
+  <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
