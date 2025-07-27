@@ -53,12 +53,14 @@
     <div id="main-container" class="main-container">
       <div id="map-toolbar" class="map-toolbar">
         <button class="toolbar-btn" data-panel-id="panel-search" title="Pencarian Lokasi"><i class="fas fa-search"></i></button>
+        <button class="toolbar-btn" data-panel-id="panel-layers" title="Lapisan Peta"><i class="fas fa-layer-group"></i></button>
         <button class="toolbar-btn" data-panel-id="panel-tools" title="Alat & Analisis"><i class="fas fa-tools"></i></button>
-        <button class="toolbar-btn" data-panel-id="panel-layers" title="Filter & Statistik"><i class="fas fa-chart-bar"></i></button>
+        <button class="toolbar-btn" data-panel-id="panel-data" title="Filter & Statistik"><i class="fas fa-chart-bar"></i></button>
         <button id="print-map-btn" class="toolbar-btn" title="Cetak Peta"><i class="fas fa-print"></i></button>
         <button class="toolbar-btn" data-panel-id="panel-report" title="Lapor & Ulas"><i class="fas fa-exclamation-triangle"></i></button>
       </div>
       <div id="panel-container" class="panel-container">
+        
         <div id="panel-search" class="tool-panel">
           <button class="close-panel-btn">×</button>
           <h3>Pencarian Lokasi & Alamat</h3>
@@ -78,6 +80,13 @@
             </div>
           </div>
         </div>
+        
+        <div id="panel-layers" class="tool-panel">
+            <button class="close-panel-btn">×</button>
+            <h3>Lapisan Peta</h3>
+            <div id="layer-control-container" class="panel-content" style="padding: 0;"></div>
+        </div>
+        
         <div id="panel-tools" class="tool-panel">
           <button class="close-panel-btn">×</button>
           <h3>Alat & Analisis</h3>
@@ -98,7 +107,8 @@
             </div>
           </div>
         </div>
-        <div id="panel-layers" class="tool-panel">
+        
+        <div id="panel-data" class="tool-panel">
             <button class="close-panel-btn">×</button>
             <h3>Filter & Statistik</h3>
             <div class="panel-content">
@@ -106,7 +116,6 @@
                     <h4>Filter Data</h4>
                     <div class="custom-select-wrapper"><select id="kategori-filter"><option value="Semua">Tampilkan Semua</option></select></div>
                 </div>
-                
                 <div class="dashboard-card">
                     <h4>Pengaturan Layer Batas Wilayah</h4>
                     <div class="layer-control-group"><label for="area-color-picker">Warna Garis Batas:</label><input type="color" id="area-color-picker" value="#E67E22"></div>
@@ -121,6 +130,7 @@
                 <div class="dashboard-card"><h4>Unduh Data</h4><div class="download-buttons-group"><button id="download-json-btn" class="sidebar-button download-option"><i class="fas fa-file-code"></i> JSON</button><button id="download-csv-btn" class="sidebar-button download-option"><i class="fas fa-file-csv"></i> Excel (CSV)</button><button id="download-pdf-btn" class="sidebar-button download-option"><i class="fas fa-file-pdf"></i> PDF</button></div></div>
             </div>
         </div>
+        
         <div id="panel-report" class="tool-panel">
           <button class="close-panel-btn">×</button>
           <h3>Laporkan Kesalahan / Beri Ulasan</h3>
