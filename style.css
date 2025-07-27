@@ -478,7 +478,7 @@ body {
 }
 .legend i {
     width: 10px;
-    height: 10px;
+    height: 8px;
     float: left;
     margin-right: 8px;
     border: 1px solid #777;
@@ -666,4 +666,18 @@ body {
 
 .features-section h2 {
     font-size: 1.8em; /* Judul fitur diperkecil */
+}
+/* CSS untuk Integrasi Kontrol Layer ke Panel */
+#layer-control-container .leaflet-control-layers {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+#layer-control-container .leaflet-control-layers-list {
+    height: 100%;
+}
+/* Sembunyikan container kosong dari kontrol layer di pojok peta */
+.leaflet-top.leaflet-right .leaflet-control-layers:empty {
+    display: none;
 }
