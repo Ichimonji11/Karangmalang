@@ -570,7 +570,7 @@ body {
 }
 
 /* =================================================================== */
-/* MEDIA QUERIES (RESPONSIVE) - BAGIAN INI YANG DIPERBAIKI SECARA TOTAL */
+/* MEDIA QUERIES (RESPONSIVE) - BAGIAN INI YANG PALING PENTING         */
 /* =================================================================== */
 @media (max-width: 768px) {
     /* Mencegah panel samping mendorong peta */
@@ -638,4 +638,32 @@ body {
         bottom: 80px;
         left: 60px;
     }
+}
+/* Aturan Responsif untuk Landing Page */
+.hero-title {
+    font-size: 2.2em; /* Judul utama diperkecil */
+}
+
+.hero-subtitle {
+    font-size: 1em; /* Sub-judul diperkecil */
+    margin-bottom: 30px;
+}
+
+.cta-buttons-group {
+    flex-direction: column; /* Tombol disusun vertikal */
+    align-items: center; /* Dipusatkan */
+    gap: 15px;
+}
+
+.cta-button {
+    width: 80%; /* Lebar tombol disesuaikan */
+    max-width: 300px;
+}
+
+.features-section {
+    padding: 60px 20px; /* Padding disesuaikan */
+}
+
+.features-section h2 {
+    font-size: 1.8em; /* Judul fitur diperkecil */
 }
