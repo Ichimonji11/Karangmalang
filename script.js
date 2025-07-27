@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!map) {
             initializeMapAndFeatures(); 
         }
-        // Penundaan untuk memastikan container peta sudah visible sebelum invalidateSize
         setTimeout(() => { if (map) map.invalidateSize(); }, 10);
     }
 
@@ -29,8 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // BAGIAN 2: KODE INTI APLIKASI WEBGIS
     // ===================================================================
     function initializeMapAndFeatures() {
-        // Fungsi untuk mendapatkan warna dan ikon berdasarkan properti "Keterangan"
-        // FUNGSI INI TIDAK DIUBAH, SESUAI PERMINTAAN ANDA
         function getStyleByKeterangan(properties) {
             const keterangan = properties.Keterangan ? String(properties.Keterangan).toLowerCase() : 'lainnya';
             
@@ -58,17 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return L.divIcon({ html: iconHtml, className: 'custom-marker-container', iconSize: [size.width, size.height], iconAnchor: [size.width / 2, size.height], popupAnchor: [0, -size.height] });
         }
 
-        // *** PERUBAHAN DI SINI ***
-        // Fungsi ini dimodifikasi untuk menambahkan gambar
         function createPopupContent(properties) {
             const lat = properties.Y;
             const lng = properties.X;
             const safeName = (properties.Nama || 'Nama Tidak Diketahui').replace(/'/g, "\\'");
             
-            // Cek apakah ada properti 'Image' dan buat tag <img> jika ada
             const imageHtml = properties.Image 
                 ? `<img src="assets/${properties.Image}" alt="${safeName}" onerror="this.onerror=null;this.src='https://placehold.co/300x130?text=Gambar+Tidak+Tersedia';">`
-                : ''; // Jika tidak ada properti Image, string akan kosong
+                : '';
             
             const actionButtons = `<button class="popup-button" onclick="window.requestRouteFromUser(${lat}, ${lng})">Rute dari Lokasi Saya</button> <button class="popup-button secondary" onclick="window.searchRadiusFromLocation(${lat}, ${lng}, '${safeName}')">Cari Terdekat</button>`;
             const setStartRouteButton = `<button class="popup-button" onclick="window.setRoutingStart(${lat}, ${lng}, '${safeName}')">Jadikan Titik Awal Rute</button>`;
@@ -85,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>`;
         }
         
-        // **PERUBAHAN:** layerGroup diganti dengan umkmLayer dan lokasiTempatLayer
         let umkmMasterData = [], currentlyDisplayedFeatures = [], umkmLayer, lokasiTempatLayer, routingControl, userLocationMarker,
             categoryChart, markerLayers, routingOrigin, radiusCircle,
             radiusCenterMarker, isRadiusSelectionMode, isCustomRoutingMode,
@@ -93,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
             batasWilayahGeoJson, slopeLayer1, slopeLayerDesa,
             clearRouteBtn, clearBufferBtn, layerControl;
         
-        // **PERUBAHAN:** Kriteria untuk memisahkan layer berdasarkan "Keterangan"
         const umkmKeterangan = new Set(['toko & warung', 'jasa & lainnya']);
 
         const tutupanLahanStyles = {
@@ -224,10 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         L.control.zoom({ position: 'topright' }).addTo(map);
         
-        // **PERUBAHAN:** Inisialisasi layer terpisah dan menambahkannya ke peta
         umkmLayer = L.layerGroup().addTo(map);
         lokasiTempatLayer = L.layerGroup().addTo(map);
-
         temporaryMarkersLayer = L.layerGroup().addTo(map);
 
         const userIcon = L.icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', iconSize: [32, 32] });
@@ -235,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const baseMaps = { "Peta Voyager": cartoVoyager, "Peta Jalan (OSM)": osm, "Satelit": satellite, "Peta Topografi": openTopoMap, "Peta Toner": stamenToner };
       
-    
         L.control.scale({ metric: true, imperial: false, position: 'bottomright' }).addTo(map);
 
         function closeAllPanels() {
@@ -285,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         new L.Control.CustomButtons({ position: 'topright' }).addTo(map);
 
-        // FUNGSI INI TIDAK DIUBAH, BEKERJA DENGAN LOGIKA ASLI
         function updateStatsAndChart(features) {
             document.getElementById('rs-count').textContent = features.length;
             if (features.length === 0) {
@@ -317,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // FUNGSI INI TIDAK DIUBAH, BEKERJA DENGAN LOGIKA ASLI
         function populateFilter(features) {
             categoryFilterDropdown.innerHTML = '<option value="Semua">Tampilkan Semua</option>';
             const categories = [...new Set(features.map(f => f.properties.Keterangan).filter(Boolean))].sort();
@@ -330,26 +317,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         categoryFilterDropdown.addEventListener('change', displayFeatures);
 
-        // **PERUBAHAN UTAMA ADA DI FUNGSI INI**
         function displayFeatures() {
-            // Kosongkan layer-layer terpisah
             umkmLayer.clearLayers();
             lokasiTempatLayer.clearLayers();
             markerLayers = {};
             
             const filterValue = categoryFilterDropdown.value;
 
-            // Filter data berdasarkan dropdown (menggunakan Keterangan asli), tidak berubah
             currentlyDisplayedFeatures = (filterValue === 'Semua')
                 ? umkmMasterData
                 : umkmMasterData.filter(feature => feature.properties.Keterangan === filterValue);
 
-            // Update statistik berdasarkan data yang difilter, tidak berubah
             updateStatsAndChart(currentlyDisplayedFeatures);
             
             const markerSize = getMarkerSizeForZoom(map.getZoom());
 
-            // Loop melalui data yang sudah difilter dan tempatkan di layer yang sesuai
             currentlyDisplayedFeatures.forEach(feature => {
                 const lat = feature.properties.Y;
                 const lng = feature.properties.X;
@@ -368,10 +350,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Simpan semua marker untuk fungsi pencarian
                 markerLayers[feature.properties.Nama] = marker;
 
-                // **Logika Pemisah Layer:** Tentukan marker masuk ke layer mana
                 const keteranganLower = (feature.properties.Keterangan || '').toLowerCase();
                 if (umkmKeterangan.has(keteranganLower)) {
                     marker.addTo(umkmLayer);
@@ -394,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.textContent = result.properties.Nama;
                 item.onclick = () => { 
                     closeAllPanels();
-                    // Pencarian tetap bekerja karena markerLayers diisi untuk semua marker
                     const marker = markerLayers[result.properties.Nama];
                     if (marker) {
                         map.flyTo(marker.getLatLng(), 18);
@@ -576,7 +555,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         map.on('zoomend', function() {
             const newSize = getMarkerSizeForZoom(map.getZoom());
-            // Perbarui ikon di kedua layer
             umkmLayer.eachLayer(marker => {
                 if (marker.feature && marker.feature.properties) {
                     marker.setIcon(getMarkerIcon(marker.feature.properties, newSize));
@@ -605,9 +583,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Proses memuat semua data
         Promise.all([
-            fetch('data/Data UMKM.geojson').then(res => res.json()), // Gunakan file GeoJSON yang telah Anda update
+            fetch('data/Data UMKM.geojson').then(res => res.json()),
             fetch('data/Batas.geojson').then(res => res.json()),
             fetch('data/Tutupan Lahan.geojson').then(res => res.json()),
             fetch('data/Batas Dusun.geojson').then(res => res.json()),
@@ -694,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     onEachFeature: (feature, layer) => {
                          const p = feature.properties;
                          if (p && p.RT) layer.bindPopup(`<div class="area-popup-content"><div class="area-popup-title"><i class="fas fa-map-signs"></i>Informasi ${p.RT}</div><div class="area-attributes"><div class="area-attribute-item"><i class="fas fa-users"></i><div><strong>Jumlah Penduduk:</strong><span>${p.Penduduk || 'Tidak ada data'} Jiwa</span></div></div><div class="area-attribute-item"><i class="fas fa-home"></i><div><strong>Jumlah KK:</strong><span>${p['Jumlah KK'] || 'Tidak ada data'} KK</span></div></div><div class="area-attribute-item"><i class="fas fa-user-tie"></i><div><strong>Ketua RT:</strong><span>${p['Ketua RT'] || 'Tidak ada data'}</span></div></div></div></div>`);
-                    }
+                     }
                 });
             }
 
@@ -730,7 +707,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            // **PERUBAHAN:** Memperbarui kontrol layer dengan layer terpisah
             const groupedOverlays = {
               "Dusun Karangmalang": {
                 "UMKM": umkmLayer,
@@ -747,13 +723,23 @@ document.addEventListener('DOMContentLoaded', function() {
               }
             };
 
+            // ===============================================
+            // PERBAIKAN FINAL PADA KODE INI
+            // ===============================================
             if (layerControl) {
                 map.removeControl(layerControl);
             }
+
             layerControl = L.control.groupedLayers(baseMaps, groupedOverlays, {
                 collapsed: false,
-                position: 'topright'
-            }).addTo(map);
+                position: 'topright' // Tambahkan ke pojok kanan atas sementara
+            }).addTo(map); // Gunakan .addTo(map) untuk inisialisasi yang benar
+
+            // Sekarang pindahkan elemen yang sudah jadi ke dalam panel
+            const layerControlContainer = document.getElementById('layer-control-container');
+            const controlHtmlElement = layerControl.getContainer();
+            layerControlContainer.appendChild(controlHtmlElement);
+
 
         }).catch(err => {
             console.error('Gagal memuat data awal:', err);
@@ -780,7 +766,7 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadCsvBtn.addEventListener('click', function() {
             const dataToDownload = getActiveFeaturesForDownload();
             if (!dataToDownload.features.length) return alert('Tidak ada data untuk diunduh.');
-            const headers = ['Nama', 'Keterangan', 'Longitude', 'Latitude', 'Image']; // Menambahkan Image ke header CSV
+            const headers = ['Nama', 'Keterangan', 'Longitude', 'Latitude', 'Image'];
             let csvContent = headers.join(',') + '\n';
             dataToDownload.features.forEach(f => {
                 const row = [`"${f.properties.Nama || ''}"`, `"${f.properties.Keterangan || ''}"`, f.geometry.coordinates[0], f.geometry.coordinates[1], `"${f.properties.Image || ''}"`];
@@ -806,6 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
             doc.autoTable({ head: tableHead, body: tableBody, startY: 25 });
             doc.save('laporan_data_umkm.pdf');
         });
+
          const printMapBtn = document.getElementById('print-map-btn');
         if (printMapBtn) {
             printMapBtn.addEventListener('click', function() {
