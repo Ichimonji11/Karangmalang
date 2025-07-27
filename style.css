@@ -12,7 +12,7 @@ body {
 }
 
 #landing-page {
-    display: block; 
+    display: block;
 }
 .app-container {
     display: none;
@@ -40,6 +40,16 @@ body {
     background-image: url('https://images.unsplash.com/photo-1624731798627-6cea0017de7c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGllbmd8ZW58MHx8MHx8fDA%3D');
     background-size: cover;
     background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .hero-content {
@@ -154,7 +164,7 @@ body {
   color: #333;
   margin: 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  height: 60px; 
+  height: 60px;
   border-bottom: 1px solid #e0e0e0;
   z-index: 1003;
   position: relative;
@@ -263,10 +273,10 @@ body {
     color: #333;
 }
 
-.chart-wrapper { 
-    position: relative; 
-    width: 100%; 
-    height: 280px; 
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
     margin-top: 15px;
 }
 
@@ -299,35 +309,35 @@ body {
 .geocode-result-item:hover { background-color: #f0f0f0; }
 
 .status-panel {
-    padding: 10px; 
-    text-align: center; 
-    background-color: #fff3cd; 
-    color: #664d03; 
-    border-bottom: 1px solid #ffecb5; 
-    display: none; 
-    font-weight: bold; 
-    z-index: 999; 
-    position: absolute; 
-    top:0; 
-    left: 0; 
-    right: 0; 
+    padding: 10px;
+    text-align: center;
+    background-color: #fff3cd;
+    color: #664d03;
+    border-bottom: 1px solid #ffecb5;
+    display: none;
+    font-weight: bold;
+    z-index: 999;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
 }
 
 .custom-control-container a {
-    display: block; 
-    width: 34px; 
-    height: 34px; 
-    text-align: center; 
-    line-height: 34px; 
-    font-size: 1.5em; 
-    cursor: pointer; 
-    text-decoration: none; 
-    color: black; 
-    border-bottom: 1px solid #eee; 
+    display: block;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #eee;
 }
 .custom-control-container a:last-child { border-bottom: none; }
 .custom-control-container a:hover { background-color: #f4f4f4; }
-.leaflet-routing-container { max-width: 300px; } 
+.leaflet-routing-container { max-width: 300px; }
 
 .custom-marker-container {
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
@@ -356,6 +366,7 @@ body {
 .custom-popup-card .popup-button:hover { background-color: #005a8d; }
 .custom-popup-card .popup-button.secondary { background-color: #5c677d; }
 .custom-popup-card .popup-button.secondary:hover { background-color: #4a5467; }
+
 .area-popup-content { font-family: 'Poppins', sans-serif; padding: 5px; line-height: 1.5; }
 .area-popup-title { margin: 5px 0 15px 0; font-size: 1.2em; font-weight: 600; color: #005a8d; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; display: flex; align-items: center; }
 .area-popup-title i { margin-right: 10px; color: #0077b6; }
@@ -390,7 +401,7 @@ body {
 .toolbar-btn:last-child { border-bottom: none; }
 .toolbar-btn:hover { background-color: #f4f4f4; }
 .toolbar-btn.active { background-color: #0077b6; color: white; }
-.panel-container { position: relative; width: 0; height: 100%; pointer-events: none; z-index: 1001; overflow: hidden; transition: width 0.3s ease-in-out; flex-shrink: 0; }
+.panel-container { position: relative; width: 0; height: 100%; pointer-events: none; z-index: 1001; overflow: hidden; transition: width 0.3s ease-in-out, transform 0.3s ease-in-out; flex-shrink: 0; }
 .tool-panel { position: absolute; top: 0; left: 0; width: 360px; height: 100%; background-color: #f8f9fa; border-right: 1px solid #ddd; box-shadow: 4px 0 15px rgba(0,0,0,0.1); transform: translateX(-100%); transition: transform 0.3s ease-in-out; pointer-events: auto; display: flex; flex-direction: column; }
 .tool-panel.visible { transform: translateX(0); }
 .close-panel-btn { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; line-height: 30px; text-align: center; font-size: 1.5em; font-weight: bold; color: #888; background: none; border: none; cursor: pointer; z-index: 10; }
@@ -455,21 +466,8 @@ body {
 .clear-buffer-btn:hover { background-color: #ec971f; transform: scale(1.1); }
 
 /* ====================================================== */
-/* MEDIA QUERIES (RESPONSIVE)                             */
+/* CSS Legenda & Popup Area (Tidak berubah)               */
 /* ====================================================== */
-@media (max-width: 768px) {
-    .main-container.panel-visible .panel-container { width: 100%; height: 70vh; }
-    .main-container.panel-visible .map-toolbar { transform: none; }
-    .tool-panel { width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .map-toolbar { top: auto; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: row; border-radius: 50px; padding: 5px; background-color: rgba(255, 255, 255, 0.95); }
-    .toolbar-btn { border-bottom: none; border-right: 1px solid #eee; border-radius: 0; width: 48px; height: 48px; line-height: 48px; }
-    .toolbar-btn:last-child { border-right: none; }
-    .toolbar-btn.active { border-radius: 50%; }
-    .app-header h1 { font-size: 1.2em; }
-    .clear-route-btn { bottom: 80px; left: 10px; }
-    .clear-buffer-btn { bottom: 80px; left: 60px; }
-}
-/* CSS untuk Legenda */
 .legend {
     line-height: 18px;
     color: #333;
@@ -490,16 +488,13 @@ body {
     font-size: 1.1em;
     text-align: center;
 }
-
-/* GAYA POPUP UNTUK BATAS AREA */
 .area-popup-content {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    width: 280px; /* Lebar popup */
+    width: 280px;
 }
 .area-popup-title {
-    /* Mengatur ulang margin default dari leaflet-popup-content-wrapper */
-    margin: -15px -19px 15px -19px; 
+    margin: -15px -19px 15px -19px;
     padding: 12px 15px;
     font-size: 1.2em;
     font-weight: 600;
@@ -516,7 +511,7 @@ body {
 .area-attributes {
     display: flex;
     flex-direction: column;
-    gap: 14px; /* Jarak antar item */
+    gap: 14px;
 }
 .area-attribute-item {
     display: flex;
@@ -542,10 +537,8 @@ body {
 }
 
 /* ====================================================== */
-/* GAYA CETAK BARU: Menggunakan Kelas Khusus              */
+/* GAYA CETAK (Tidak berubah)                             */
 /* ====================================================== */
-
-/* Aturan ini akan aktif saat body memiliki kelas 'printing-mode' */
 .printing-mode #app-container,
 .printing-mode #main-container,
 .printing-mode #map-container,
@@ -559,22 +552,90 @@ body {
     padding: 0 !important;
     border: none !important;
     box-shadow: none !important;
-    z-index: 9999 !important; /* Pastikan peta di lapisan paling atas */
+    z-index: 9999 !important;
 }
 
-/* Sembunyikan semua elemen lain saat mode cetak aktif */
 .printing-mode body > *:not(#app-container),
 .printing-mode #app-container > *:not(#main-container),
 .printing-mode #main-container > *:not(#map-container),
-.printing-mode .leaflet-control, 
+.printing-mode .leaflet-control,
 .printing-mode .legend {
     display: none !important;
 }
 
-/* Aturan @media print tetap diperlukan untuk beberapa browser */
 @media print {
-    /* Sembunyikan semua elemen di body kecuali container utama peta */
     body > *:not(#app-container) {
         display: none !important;
+    }
+}
+
+/* =================================================================== */
+/* MEDIA QUERIES (RESPONSIVE) - BAGIAN INI YANG DIPERBAIKI SECARA TOTAL */
+/* =================================================================== */
+@media (max-width: 768px) {
+    /* Mencegah panel samping mendorong peta */
+    .main-container.panel-visible .panel-container {
+        width: 100%; /* Panel akan menutupi layar */
+    }
+
+    /* Hilangkan efek geser toolbar di desktop, karena tidak relevan di mobile */
+    .main-container.panel-visible .map-toolbar {
+        transform: none;
+    }
+
+    /* Jadikan panel sebagai lapisan overlay dari kiri */
+    .tool-panel {
+        width: 100%;
+        max-width: none; /* Hapus batasan lebar maksimum di mobile */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Pindahkan toolbar ke bawah dan tengah */
+    .map-toolbar {
+        top: auto;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%); /* Trik untuk memusatkan secara horizontal */
+        display: flex;
+        flex-direction: row; /* Ubah jadi baris horizontal */
+        border-radius: 50px;
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Atur ulang gaya tombol di toolbar */
+    .toolbar-btn {
+        border-bottom: none;
+        border-right: 1px solid #eee; /* Beri pemisah antar tombol */
+        border-radius: 0;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .toolbar-btn:last-child {
+        border-right: none; /* Tombol terakhir tidak perlu pemisah */
+    }
+
+    /* Buat tombol aktif menjadi lingkaran agar terlihat bagus */
+    .toolbar-btn.active {
+        border-radius: 50%;
+    }
+
+    /* Perkecil judul di header */
+    .app-header h1 {
+        font-size: 1.2em;
+    }
+    
+    /* Posisikan tombol 'Hapus Rute/Buffer' di atas toolbar mobile */
+    .clear-route-btn {
+        bottom: 80px;
+        left: 10px;
+    }
+
+    .clear-buffer-btn {
+        bottom: 80px;
+        left: 60px;
     }
 }
